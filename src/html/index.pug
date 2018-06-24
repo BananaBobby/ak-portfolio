@@ -1,0 +1,61 @@
+html
+    include ./inc/head.pug
+
+body
+    div.layout
+        div.layout__side
+            h1.layout__title
+                | Anastasia
+                br
+                | Kochmarskaya
+
+            div.menu.layout__menu
+                a.menu__item(href="#")
+                    | Dancer
+                    div.menu__progress
+                        div.menu__bar
+
+                a.menu__item(href="#")
+                    | Choreographer
+                    div.menu__progress
+                        div.menu__bar
+
+                a.menu__item(href="#")
+                    | Model
+                    div.menu__progress
+                        div.menu__bar
+
+            div.layout__previews
+                a.layout__preview.preview(href="#")
+                    div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
+                    div.preview__action
+                        i.material-icons
+                            | play_arrow
+
+                a.layout__preview.preview(href="#")
+                    div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
+                    div.preview__action
+                        i.material-icons
+                            | search
+
+            div.layout__more
+                a.link(href="#")
+                    | More
+
+        div.layout__content
+            div.layout__img
+            div.layout__changer
+            div.layout__inner
+
+        div.layout__shares
+            a.layout__share(href="#")
+                | Instagram
+
+            a.layout__share(href="#")
+                | Facebook
+
+            a.layout__share(href="#")
+                | Email
+
+            a.layout__share(href="#")
+                | CV

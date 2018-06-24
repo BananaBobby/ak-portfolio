@@ -1,0 +1,33 @@
+{
+  "name": "ak-portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:BananaBobby/ak-portfolio.git",
+  "author": "Dmitry Belyaev <dmitry.belyaev@booking.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:js": "webpack",
+    "watch:js": "webpack --watch",
+    "build:html": "pug -o public/html --no-debug src/html/*.pug",
+    "watch:html": "pug -o public/html --no-debug src/html/*.pug -w",
+    "build:css": "node-sass --include-path scss src/css/main.scss public/css/main.css",
+    "watch:css": "nodemon -e scss -x \"npm run build:css\"",
+    "build": "yarn build:js && yarn build:html && yarn build:css",
+    "watch": "yarn build && concurrently \"yarn watch:css\" \"yarn watch:html\" \"yarn watch:js\""
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "concurrently": "^3.6.0",
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.5",
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "webpack": "^4.12.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.0.8"
+  }
+}
