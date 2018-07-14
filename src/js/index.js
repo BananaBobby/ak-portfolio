@@ -1,1 +1,5 @@
-const a = () => console.log(1);
+import { initComponents } from './lib/component';
+import './components/TimedMenu';
+import './components/ContentSlider';
+
+initComponents();

@@ -35,20 +35,49 @@ h1 {
   &__content {
     width: 60%;
     height: 100%;
-    background: #2f2f2f;
     position: relative;
-    overflow: hidden;
     z-index: 1;
+  }
 
-    &_active .layout__changer {
-      transform: translateX(0);
+  &__content-type {
+    display: none;
+
+    &_active {
+      display: block;
+    }
+  }
+
+  &__wrapper {
+    height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &__controls {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    transform: translateX(40px);
+    transition: transform 0.3s ease-in-out;
+    z-index: 0;
+  }
+
+  &__control {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+
+    &:first-child {
+      margin-top: 0;
     }
   }
 
   &__img {
     width: 100%;
     height: 100%;
-    background: url('../img/main.jpg') no-repeat 50%;
+    background: #2f2f2f url('../img/main.jpg') no-repeat 50%;
     background-size: cover;
   }
 
@@ -59,9 +88,34 @@ h1 {
     left: 0;
     top: 0;
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s ease-in-out;
     z-index: 5;
     background: #2f2f2f;
+
+    &_secondary {
+      background: #7f8c8d;
+      transition-delay: 0.3s;
+      z-index: 10;
+    }
+
+    &_tertiary {
+      background: #fff;
+      transition-delay: 0.5s;
+      z-index: 15;
+      overflow: hidden;
+    }
+  }
+
+  &__inner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out;
+    transition-delay: 0.5s;
+    z-index: 15;
   }
 
   &__menu {
@@ -71,10 +125,43 @@ h1 {
   &__previews {
     margin-top: 40px;
     white-space: nowrap;
+    position: relative;
+  }
+
+  &__previews-section {
+    position: absolute;
+    top: 0;
+
+    &_active {
+      & .layout__preview {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+        transition-duration: 0.8s;
+        transition-delay: 0s;
+        z-index: 5;
+      }
+
+      & .layout__preview:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+    }
+
+    &:first-child {
+      position: relative;
+    }
   }
 
   &__preview {
     margin-right: 40px;
+    position: relative;
+    backface-visibility: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: 0s ease-in-out;
+    transition-delay: 1s;
+    transition-property: visibility, opacity, transform;
   }
 
   &__more {
@@ -83,7 +170,7 @@ h1 {
 
   &__shares {
     position: absolute;
-    bottom: 20px;
+    top: 20px;
     left: 80px;
   }
 
@@ -113,6 +200,38 @@ h1 {
       transform: scale(1);
     }
   }
+
+  &__preview-box {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  &_active {
+    & .layout__title {
+      cursor: pointer;
+    }
+
+    & .layout__changer {
+      transform: translateX(0);
+    }
+
+    & .layout__preview-box {
+      opacity: 0;
+      transform: translateX(-40px);
+      visibility: hidden;
+    }
+
+    & .layout__inner {
+      transform: translateX(0);
+    }
+
+    & .layout__controls {
+      transform: translateX(0);
+    }
+
+    & .menu__progress {
+      display: none;
+    }
+  }
 }
 
 .menu {
@@ -128,6 +247,12 @@ h1 {
     &:first-child {
       margin-left: 0;
     }
+
+    &_active {
+      .menu__progress {
+        opacity: 1;
+      }
+    }
   }
 
   &__progress {
@@ -137,12 +262,15 @@ h1 {
     height: 3px;
     background: rgba(0, 0, 0, 0.1);
     left: 0;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
   }
 
   &__bar {
     height: 100%;
-    width: 20px;
+    width: 0;
     background: #333;
+    transition: width 5s linear;
   }
 }
 
@@ -221,5 +349,121 @@ h1 {
 
   &:hover:before {
     width: 30px;
+  }
+}
+
+.content-slider {
+  width: 100%;
+  height: calc(100% + 20px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-right: -30px;
+  padding-right: 30px;
+
+  &__separator {
+    //height: 20px;
+  }
+
+  &__slide {
+    height: 100%;
+    margin-left: -20px;
+
+    &_half-vertical .content-slider__item {
+      width: 50%;
+    }
+
+    &_half-horizontal {
+      flex-flow: column wrap;
+
+      & .content-slider__item {
+        height: 50%;
+      }
+    }
+
+    &_quarter {
+      .content-slider__item {
+        width: 50%;
+        height: 50%;
+      }
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__item {
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-bottom: 20px;
+  }
+
+  &__inner {
+    width: 100%;
+    height: 100%;
+    background: #2f2f2f 50% no-repeat;
+    background-size: cover;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.48);
+      transition: background 0.2s ease-in-out;
+    }
+
+    &:hover:before {
+      background: rgba(0, 0, 0, 0.32);
+    }
+  }
+
+  &__action {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    z-index: 3;
+    color: #fff;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transform: translate(-50%, -50%);
+  }
+
+  &__info {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    margin-top: 20px;
+    color: #fff;
+    z-index: 5;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  &__description {
+    margin-top: 12px;
   }
 }
