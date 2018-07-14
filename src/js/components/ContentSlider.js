@@ -39,7 +39,7 @@ class ContentSlider extends Component {
 
     _handleControlClick = (e) => {
         e.preventDefault();
-        const el = e.target;
+        const el = e.delegateTarget;
         const direction = el.getAttribute('data-direction');
         const delta = direction === 'next' ? 1 : -1;
 
@@ -47,6 +47,7 @@ class ContentSlider extends Component {
     };
 
     _handleReset = () => {
+        if (this.state.activeIndex === 0) return;
         this.setSlide(0);
     };
 
@@ -54,7 +55,7 @@ class ContentSlider extends Component {
         switch (e.which) {
             case 40: {
                 e.preventDefault();
-                const index = Math.min(this.items.length -1, this.state.activeIndex + 1);
+                const index = Math.min(this.items.length - 1, this.state.activeIndex + 1);
                 this.setSlide(index);
                 break;
             }
@@ -75,6 +76,8 @@ class ContentSlider extends Component {
 
     setSlide = (index) => {
         const item = this.items[index];
+
+        if (!item) return;
 
         item.scrollIntoView({ behavior: 'smooth' });
         this.setState({ activeIndex: index });

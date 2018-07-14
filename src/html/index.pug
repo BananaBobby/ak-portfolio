@@ -2,9 +2,9 @@ html
     include ./inc/head.pug
 
 body
-    div.layout(data-component="TimedMenu,ContentSlider")
+    div.layout(data-component="TimedMenu,ContentSlider,Gallery")
         div.layout__side
-            h1.layout__title.js-content-slider__reset
+            h1.layout__title.js-content-slider__reset.js-timed-menu__close
                 | Anastasia Belyaeva
 
             div.menu.layout__menu
@@ -26,39 +26,39 @@ body
             div.layout__preview-box
                 div.layout__previews
                     div.layout__previews-section.js-timed-menu__section
-                        a.layout__preview.preview(href="#")
+                        a.layout__preview.preview.js-gallery__preview(href="#")
                             div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
                             div.preview__action
                                 i.material-icons
                                     | play_arrow
 
-                        a.layout__preview.preview(href="#")
+                        a.layout__preview.preview.js-gallery__preview(href="#")
                             div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
                             div.preview__action
                                 i.material-icons
                                     | search
 
                     div.layout__previews-section.js-timed-menu__section
-                        a.layout__preview.preview(href="#")
+                        a.layout__preview.preview.js-gallery__preview(href="#")
                             div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529787915532-1bb524c4ca0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=144d9500d5a14bc918acf2ac41d84887&auto=format&fit=crop&w=2060&q=80)")
                             div.preview__action
                                 i.material-icons
                                     | play_arrow
 
-                        a.layout__preview.preview(href="#")
+                        a.layout__preview.preview.js-gallery__preview(href="#")
                             div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529787915532-1bb524c4ca0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=144d9500d5a14bc918acf2ac41d84887&auto=format&fit=crop&w=2060&q=80)")
                             div.preview__action
                                 i.material-icons
                                     | search
 
                     div.layout__previews-section.js-timed-menu__section
-                        a.layout__preview.preview(href="#")
+                        a.layout__preview.preview.js-gallery__preview(href="#")
                             div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
                             div.preview__action
                                 i.material-icons
                                     | play_arrow
 
-                        a.layout__preview.preview(href="#")
+                        a.layout__preview.preview.js-gallery__preview(href="#")
                             div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
                             div.preview__action
                                 i.material-icons
@@ -70,10 +70,12 @@ body
 
         div.layout__content
             div.layout__controls
-                a.layout__control.material-icons.js-content-slider__control(href="#" data-direction="prev")
-                    | arrow_upward
-                a.layout__control.material-icons.js-content-slider__control(href="#" data-direction="next")
-                    | arrow_downward
+                a.layout__control.js-content-slider__control(href="#" data-direction="prev")
+                    i.layout__control-icon.material-icons
+                        | arrow_upward
+                a.layout__control.js-content-slider__control(href="#" data-direction="next")
+                    i.layout__control-icon.material-icons
+                        | arrow_downward
 
             div.layout__wrapper
                 div.layout__img
@@ -226,4 +228,27 @@ body
             a.layout__share(href="#")
                 | CV
 
+        div.viewer.js-gallery__viewer
+            div.viewer__overlay.js-gallery__close
+
+            div.viewer__inner
+                div.viewer__action.js-gallery__action
+                    div.viewer__action-button.js-gallery__action-button
+                        i.material-icons
+                            | subject
+
+                    div.viewer__action-container
+                        div.viewer__action-title
+                            | Starring
+                        div.viewer__action-text
+                            | Starring represents the astronomy as well as the fellow females in the lives of women.
+
+                div.viewer__prev.material-icons
+                    | arrow_back
+                div.viewer__next.material-icons
+                    | arrow_forward
+
+                div.viewer__media
+                    img.viewer__src(src="../img/starring.jpg")
+                    //iframe(src="https://player.vimeo.com/video/251643698?autoplay=1&muted=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
     include ./inc/footer.pug

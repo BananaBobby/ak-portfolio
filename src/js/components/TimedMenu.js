@@ -10,9 +10,11 @@ class TimedMenu extends Component {
             progress: '.js-timed-menu__progress',
             section: '.js-timed-menu__section',
             more: '.js-timed-menu__more',
+            close: '.js-timed-menu__close',
         };
 
         this.state = {
+            layoutActive: false,
             activeIndex: 0,
             timeout: 6000
         };
@@ -20,11 +22,15 @@ class TimedMenu extends Component {
         this.modifiers = {
             contentActive: 'layout_active',
             itemActive: 'menu__item_active',
+            itemSelected: 'menu__item_selected',
             sectionActive: 'layout__previews-section_active',
         };
 
         this.handlers = {
             'more@click': this._handleMoreClick,
+            'close@click': this._handleClose,
+            'window@keydown': this._handleKeyDown,
+            'item@click': this._handleItemClick,
         };
 
         this.items = root.querySelectorAll(this.selectors.item);
@@ -33,10 +39,49 @@ class TimedMenu extends Component {
         this.timer = null;
     }
 
+    _handleKeyDown = (e) => {
+        if (e.which === 27) {
+            e.preventDefault();
+            this._handleClose();
+        }
+    };
+
+    _handleClose = () => {
+        const classList = this.root.classList;
+        const active = this.modifiers.contentActive;
+
+        if (this.state.layoutActive) {
+            this.items.forEach(item => item.classList.remove(this.modifiers.itemSelected));
+            classList.remove(active);
+            this.setState({ layoutActive: false });
+            this._setNextActive();
+            this._startTimer();
+        }
+    };
+
     _handleMoreClick = (e) => {
         e.preventDefault();
+        this.choose(this.state.activeIndex);
+    };
+
+    _handleItemClick = (e) => {
+        e.preventDefault();
+        const target = e.delegateTarget;
+        const index = Array.prototype.slice.call(this.items).indexOf(target);
+        this.choose(index);
+    };
+
+    choose = (index) => {
+        const targetItem = this.items[index];
+
+        this.items.forEach(item => item.classList.remove(this.modifiers.itemSelected, this.modifiers.itemActive));
 
         clearInterval(this.timer);
+        this.setState({
+            layoutActive: true,
+            activeIndex: index,
+        });
+        targetItem.classList.add(this.modifiers.itemSelected, this.modifiers.itemActive);
         this.root.classList.add(this.modifiers.contentActive);
     };
 
@@ -61,9 +106,13 @@ class TimedMenu extends Component {
         this._setActive(index === total - 1 ? 0 : index + 1);
     };
 
+    _startTimer = () => {
+        this.timer = setInterval(this._setNextActive, this.state.timeout);
+    };
+
     onMount() {
         this._setActive(0);
-        this.timer = setInterval(this._setNextActive, this.state.timeout);
+        this._startTimer();
     }
 }
 
