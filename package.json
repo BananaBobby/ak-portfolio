@@ -6,14 +6,14 @@
   "author": "Dmitry Belyaev <dmitry.belyaev@booking.com>",
   "license": "MIT",
   "scripts": {
-    "build:js": "webpack",
-    "watch:js": "webpack --watch",
-    "build:html": "pug -o public/html --no-debug src/html/*.pug",
-    "watch:html": "pug -o public/html --no-debug src/html/*.pug -w",
-    "build:css": "node-sass --include-path scss src/css/main.scss public/css/main.css",
-    "watch:css": "nodemon -e scss -x \"npm run build:css\"",
-    "build": "yarn build:js && yarn build:html && yarn build:css",
-    "watch": "yarn build && concurrently \"yarn watch:css\" \"yarn watch:html\" \"yarn watch:js\""
+    "js:build": "webpack",
+    "js:watch": "webpack --watch",
+    "css:build": "node-sass --include-path scss src/css/main.scss public/css/main.css",
+    "css:watch": "nodemon -e scss -x \"npm run build:css\"",
+    "server:start": "node ./server/index.js",
+    "server:watch": "nodemon \"yarn server:start\"",
+    "build": "yarn js:build && yarn css:build",
+    "watch": "yarn build && concurrently \"yarn css:watch\" \"yarn js:watch\" \"yarn server:watch\""
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -21,6 +21,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "concurrently": "^3.6.0",
+    "express": "^4.16.3",
+    "js-yaml": "^3.12.0",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.5",
     "pug": "^2.0.3",

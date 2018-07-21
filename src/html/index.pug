@@ -8,20 +8,11 @@ body
                 | Anastasia Belyaeva
 
             div.menu.layout__menu
-                a.menu__item.js-timed-menu__item(href="#")
-                    | Dancer
-                    div.menu__progress
-                        div.menu__bar.js-timed-menu__progress
-
-                a.menu__item.js-timed-menu__item(href="#")
-                    | Choreographer
-                    div.menu__progress
-                        div.menu__bar.js-timed-menu__progress
-
-                a.menu__item.js-timed-menu__item(href="#")
-                    | Model
-                    div.menu__progress
-                        div.menu__bar.js-timed-menu__progress
+                each rubric in rubrics
+                    a.menu__item.js-timed-menu__item(href="#" data-type=rubric.name)
+                        = rubric.name
+                        div.menu__progress
+                            div.menu__bar.js-timed-menu__progress
 
             div.layout__preview-box
                 div.layout__previews
@@ -83,137 +74,27 @@ body
                 div.layout__changer.layout__changer_secondary
                 div.layout__changer.layout__changer_tertiary
                     div.layout__inner
-                        div.layout__content-type.layout__content-type_active
-                            div.content-slider.js-content-slider__scroll
-                                div.content-slider__slide.content-slider__slide_single.js-content-slider__item
-                                    div.content-slider__wrapper
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                div.content-slider__slide.content-slider__slide_single.js-content-slider__item
-                                    div.content-slider__wrapper
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                div.content-slider__slide.content-slider__slide_half-vertical.js-content-slider__item
-                                    div.content-slider__wrapper
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                div.content-slider__slide.content-slider__slide_half-horizontal.js-content-slider__item
-                                    div.content-slider__wrapper
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                div.content-slider__slide.content-slider__slide_quarter.js-content-slider__item
-                                    div.content-slider__wrapper
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
-
-                                        div.content-slider__item
-                                            div.content-slider__holder
-                                                div.content-slider__inner(style="background-image: url(../img/starring.jpg)")
-                                                    div.content-slider__action
-                                                        i.material-icons
-                                                            | play_arrow
-                                                    div.content-slider__info
-                                                        div.content-slider__title
-                                                            | Starring
-                                                        div.content-slider__description
-                                                            | Starring represents the astronomy as well as the fellow females in the lives of women.
+                        each rubric in rubrics
+                            div.layout__content-type.layout__content-type_active(data-type=rubric.name)
+                                div.content-slider.js-content-slider__scroll
+                                    each slide in rubric.slides
+                                        div.content-slider__slide.content-slider__slide_single.js-content-slider__item
+                                            div.content-slider__wrapper
+                                                each post in slide
+                                                    div.content-slider__item
+                                                        div.content-slider__holder
+                                                            div.content-slider__inner(style="background-image: url(" + post.preview + ")")
+                                                                div.content-slider__action
+                                                                    i.material-icons
+                                                                        if post.video
+                                                                            | play_arrow
+                                                                        else
+                                                                            | search
+                                                                div.content-slider__info
+                                                                    div.content-slider__title
+                                                                        = post.title
+                                                                    div.content-slider__description
+                                                                        = post.description
 
         div.layout__shares
             a.layout__share(href="#")
@@ -249,6 +130,6 @@ body
                     | arrow_forward
 
                 div.viewer__media
-                    img.viewer__src(src="../img/starring.jpg")
+                    img.viewer__src(src="/public/img/starring.jpg")
                     //iframe(src="https://player.vimeo.com/video/251643698?autoplay=1&muted=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
     include ./inc/footer.pug

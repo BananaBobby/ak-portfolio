@@ -183,9 +183,9 @@ h1 {
   .layout_active .layout__inner {
     transition-delay: 0.5s; }
   .layout_active .layout__preview-box {
+    pointer-events: none;
     opacity: 0;
-    transform: translateX(-40px);
-    visibility: hidden; }
+    transform: translateX(-40px); }
   .layout_active .layout__inner {
     transform: translateX(0); }
   .layout_active .layout__controls {
