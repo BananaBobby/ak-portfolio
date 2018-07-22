@@ -9,7 +9,10 @@ const infoTemplate = (data) => `
 const mediaTemplate = (data) => {
     if (data.video) {
         return `
-            <iframe src="https://player.vimeo.com/video/251643698?autoplay=1&muted=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="viewer__video">
+                  <img class="viewer__video-holder" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+                  <iframe src="${data.video}?autoplay=1&muted=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
         `;
     }
 

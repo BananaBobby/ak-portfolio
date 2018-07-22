@@ -2,16 +2,14 @@ const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+const names = ['dancer', 'choreographer', 'model'];
 const postsPath = path.resolve(__dirname, '../public/posts');
-const isDirectory = source => fs.lstatSync(source).isDirectory();
-const rubrics = fs.readdirSync(postsPath).map(name => {
+const rubrics = names.map(name => {
     return {
         name,
         path: path.join(postsPath, name)
     };
-}).filter(obj => {
-    return isDirectory(obj.path);
-}).sort(a => a.name !== 'dancer');
+})
 
 const rubricsData = rubrics.map(rubric => {
     const postFiles = fs.readdirSync(rubric.path);

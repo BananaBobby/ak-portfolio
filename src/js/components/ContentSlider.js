@@ -68,8 +68,8 @@ class ContentSlider extends Component {
             }
 
             case 27: {
-                this._handleReset();
-                break;
+                // this._handleReset();
+                // break;
             }
         }
     };
