@@ -11,11 +11,16 @@ class TimedMenu extends Component {
             section: '.js-timed-menu__section',
             more: '.js-timed-menu__more',
             close: '.js-timed-menu__close',
+            contentType: '.js-timed-menu__content-type',
+            slider: '.js-content-slider',
+            sliderPrev: '.js-timed-menu__slider-prev',
+            sliderNext: '.js-timed-menu__slider-next'
         };
 
         this.state = {
             layoutActive: false,
             activeIndex: 0,
+            activeSliderIndex: null,
             timeout: 6000
         };
 
@@ -24,6 +29,7 @@ class TimedMenu extends Component {
             itemActive: 'menu__item_active',
             itemSelected: 'menu__item_selected',
             sectionActive: 'layout__previews-section_active',
+            typeActive: 'layout__content-type_active'
         };
 
         this.handlers = {
@@ -35,8 +41,13 @@ class TimedMenu extends Component {
 
         this.items = root.querySelectorAll(this.selectors.item);
         this.sections = root.querySelectorAll(this.selectors.section);
+        this.contents = root.querySelectorAll(this.selectors.contentType);
+        this.sliders = root.querySelectorAll(this.selectors.slider);
+        this.sliderPrev = root.querySelector(this.selectors.sliderPrev);
+        this.sliderNext = root.querySelector(this.selectors.sliderNext);
 
         this.timer = null;
+        this.instances = [];
     }
 
     _handleKeyDown = (e) => {
@@ -75,6 +86,7 @@ class TimedMenu extends Component {
         const targetItem = this.items[index];
 
         this.items.forEach(item => item.classList.remove(this.modifiers.itemSelected, this.modifiers.itemActive));
+        this.contents.forEach(item => item.classList.remove(this.modifiers.typeActive));
 
         clearInterval(this.timer);
         this.setState({
@@ -83,6 +95,39 @@ class TimedMenu extends Component {
         });
         targetItem.classList.add(this.modifiers.itemSelected, this.modifiers.itemActive);
         this.root.classList.add(this.modifiers.contentActive);
+
+        this.contents[index].classList.add(this.modifiers.typeActive);
+
+        this._initSlider(index);
+    };
+
+    _handleSliderPrev = () => {
+        if (!this.instances[this.state.activeSliderIndex]) return;
+
+        this.instances[this.state.activeSliderIndex].setPreviousSlide();
+    };
+
+    _handleSliderNext = () => {
+        if (!this.instances[this.state.activeSliderIndex]) return;
+
+        this.instances[this.state.activeSliderIndex].setNextSlide();
+    };
+
+    _initSlider = (index) => {
+        if (this.state.activeSliderIndex !== null) {
+            this.sliderPrev.removeEventListener('click', this._handleSliderPrev);
+            this.sliderNext.removeEventListener('click', this._handleSliderNext);
+        }
+
+        if (!this.instances[index]) {
+            const sliderEl = this.sliders[index];
+            this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl);
+            this.instances[index].mount();
+        }
+
+        this.setState({ activeSliderIndex: index });
+        this.sliderPrev.addEventListener('click', this._handleSliderPrev);
+        this.sliderNext.addEventListener('click', this._handleSliderNext);
     };
 
     _setActive = (index) => {

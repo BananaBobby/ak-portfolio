@@ -49,6 +49,7 @@ const rubricsData = rubrics.map(rubric => {
     return {
         ...rubric,
         slides,
+        previews: posts.slice(0, 2)
     };
 });
 

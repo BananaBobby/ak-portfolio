@@ -9,9 +9,9 @@
     "js:build": "webpack",
     "js:watch": "webpack --watch",
     "css:build": "node-sass --include-path scss src/css/main.scss public/css/main.css",
-    "css:watch": "nodemon -e scss -x \"npm run build:css\"",
+    "css:watch": "nodemon -e scss -x \"npm run css:build\"",
     "server:start": "node ./server/index.js",
-    "server:watch": "nodemon \"yarn server:start\"",
+    "server:watch": "nodemon ./server/index.js",
     "build": "yarn js:build && yarn css:build",
     "watch": "yarn build && concurrently \"yarn css:watch\" \"yarn js:watch\" \"yarn server:watch\""
   },

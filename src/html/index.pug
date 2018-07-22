@@ -2,58 +2,31 @@ html
     include ./inc/head.pug
 
 body
-    div.layout(data-component="TimedMenu,ContentSlider,Gallery")
+    div.layout(data-component="TimedMenu,Gallery")
         div.layout__side
             h1.layout__title.js-content-slider__reset.js-timed-menu__close
                 | Anastasia Belyaeva
 
             div.menu.layout__menu
                 each rubric in rubrics
-                    a.menu__item.js-timed-menu__item(href="#" data-type=rubric.name)
+                    a.menu__item.js-timed-menu__item(href="#")
                         = rubric.name
                         div.menu__progress
                             div.menu__bar.js-timed-menu__progress
 
             div.layout__preview-box
                 div.layout__previews
-                    div.layout__previews-section.js-timed-menu__section
-                        a.layout__preview.preview.js-gallery__preview(href="#")
-                            div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
-                            div.preview__action
-                                i.material-icons
-                                    | play_arrow
-
-                        a.layout__preview.preview.js-gallery__preview(href="#")
-                            div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
-                            div.preview__action
-                                i.material-icons
-                                    | search
-
-                    div.layout__previews-section.js-timed-menu__section
-                        a.layout__preview.preview.js-gallery__preview(href="#")
-                            div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529787915532-1bb524c4ca0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=144d9500d5a14bc918acf2ac41d84887&auto=format&fit=crop&w=2060&q=80)")
-                            div.preview__action
-                                i.material-icons
-                                    | play_arrow
-
-                        a.layout__preview.preview.js-gallery__preview(href="#")
-                            div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529787915532-1bb524c4ca0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=144d9500d5a14bc918acf2ac41d84887&auto=format&fit=crop&w=2060&q=80)")
-                            div.preview__action
-                                i.material-icons
-                                    | search
-
-                    div.layout__previews-section.js-timed-menu__section
-                        a.layout__preview.preview.js-gallery__preview(href="#")
-                            div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
-                            div.preview__action
-                                i.material-icons
-                                    | play_arrow
-
-                        a.layout__preview.preview.js-gallery__preview(href="#")
-                            div.preview__img(style="background-image: url(https://images.unsplash.com/photo-1529607008248-3fb790e6bb8f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=586990b0654add53b18c4c333ebe329e&auto=format&fit=crop&w=2100&q=80)")
-                            div.preview__action
-                                i.material-icons
-                                    | search
+                    each rubric in rubrics
+                        div.layout__previews-section.js-timed-menu__section
+                            each post in rubric.previews
+                                a.layout__preview.preview.js-gallery__preview(href="#")
+                                    div.preview__img(style="background-image: url(" + post.preview + ")")
+                                    div.preview__action
+                                        i.material-icons
+                                            if post.video
+                                                | play_arrow
+                                            else
+                                                | search
 
                 div.layout__more
                     a.link.js-timed-menu__more(href="#")
@@ -61,10 +34,10 @@ body
 
         div.layout__content
             div.layout__controls
-                a.layout__control.js-content-slider__control(href="#" data-direction="prev")
+                a.layout__control.js-timed-menu__slider-prev(href="#")
                     i.layout__control-icon.material-icons
                         | arrow_upward
-                a.layout__control.js-content-slider__control(href="#" data-direction="next")
+                a.layout__control.js-timed-menu__slider-next(href="#")
                     i.layout__control-icon.material-icons
                         | arrow_downward
 
@@ -75,7 +48,7 @@ body
                 div.layout__changer.layout__changer_tertiary
                     div.layout__inner
                         each rubric in rubrics
-                            div.layout__content-type.layout__content-type_active(data-type=rubric.name)
+                            div.layout__content-type.js-timed-menu__content-type.js-content-slider
                                 div.content-slider.js-content-slider__scroll
                                     each slide in rubric.slides
                                         div.content-slider__slide.content-slider__slide_single.js-content-slider__item

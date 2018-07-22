@@ -1,5 +1,5 @@
-if (!window.AK) window.AK = {};
-if (!window.AK.components) window.AK.components = {};
+if (!window.AB) window.AB = {};
+if (!window.AB.components) window.AB.components = {};
 
 class ComponentRegistry {
     constructor() {
@@ -12,7 +12,7 @@ class ComponentRegistry {
         }
 
         this.store[componentName] = Component;
-        window.AK.components[componentName] = componentName;
+        window.AB.components[componentName] = componentName;
     }
 
     get(componentName) {

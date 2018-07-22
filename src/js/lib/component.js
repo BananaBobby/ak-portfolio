@@ -1,7 +1,7 @@
 import registry from './registry';
 import { delegate } from './helpers';
 
-if (!window.AK) window.AK = {};
+if (!window.AB) window.AB = {};
 
 export class Component {
     constructor(root, props) {
@@ -109,5 +109,5 @@ export function initComponents(el) {
     });
 }
 
-window.AK.getInstance = getInstance;
-window.AK.initComponents = initComponents;
+window.AB.getInstance = getInstance;
+window.AB.initComponents = initComponents;

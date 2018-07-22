@@ -14,6 +14,7 @@ class ContentSlider extends Component {
 
         this.state = {
             activeIndex: 0,
+            id: Math.random(),
         };
 
         this.handlers = {
@@ -42,8 +43,9 @@ class ContentSlider extends Component {
         const el = e.delegateTarget;
         const direction = el.getAttribute('data-direction');
         const delta = direction === 'next' ? 1 : -1;
+        const nextIndex = this.state.activeIndex + delta;
 
-        this.setSlide(this.state.activeIndex + delta);
+        this.setSlide(nextIndex);
     };
 
     _handleReset = () => {
@@ -74,10 +76,20 @@ class ContentSlider extends Component {
         }
     };
 
+    setNextSlide = () => {
+        this.setSlide(this.state.activeIndex + 1);
+    };
+
+    setPreviousSlide = () => {
+        this.setSlide(this.state.activeIndex - 1);
+    };
+
     setSlide = (index) => {
         const item = this.items[index];
 
+
         if (!item) return;
+        if (index < 0 || index > this.items.length - 1) return;
 
         item.scrollIntoView({ behavior: 'smooth' });
         this.setState({ activeIndex: index });
