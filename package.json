@@ -16,6 +16,7 @@
     "watch": "yarn build && concurrently \"yarn css:watch\" \"yarn js:watch\" \"yarn server:watch\""
   },
   "dependencies": {
+    "@vimeo/player": "^2.6.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",

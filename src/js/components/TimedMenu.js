@@ -13,6 +13,7 @@ class TimedMenu extends Component {
             close: '.js-timed-menu__close',
             contentType: '.js-timed-menu__content-type',
             slider: '.js-content-slider',
+            sliderScroll: '.js-content-slider__scroll',
             sliderPrev: '.js-timed-menu__slider-prev',
             sliderNext: '.js-timed-menu__slider-next',
         };
@@ -36,12 +37,14 @@ class TimedMenu extends Component {
             'more@click': this._handleMoreClick,
             'close@click': this._handleClose,
             'item@click': this._handleItemClick,
+            'body@mousewheel': this._handleMousewheel,
         };
 
         this.items = root.querySelectorAll(this.selectors.item);
         this.sections = root.querySelectorAll(this.selectors.section);
         this.contents = root.querySelectorAll(this.selectors.contentType);
         this.sliders = root.querySelectorAll(this.selectors.slider);
+        this.scrolls = root.querySelectorAll(this.selectors.sliderScroll);
         this.sliderPrev = root.querySelector(this.selectors.sliderPrev);
         this.sliderNext = root.querySelector(this.selectors.sliderNext);
 
@@ -49,11 +52,20 @@ class TimedMenu extends Component {
         this.instances = [];
     }
 
+    _handleMousewheel = (e) => {
+        if (!this.instances.length || this.state.activeSliderIndex === null) return;
+
+        const scroll = this.scrolls[this.state.activeSliderIndex];
+        console.log(e.deltaY);
+        scroll.scrollBy({ top: e.deltaY });
+    };
+
     _handleClose = () => {
         const classList = this.root.classList;
         const active = this.modifiers.contentActive;
 
         if (this.state.layoutActive) {
+            this.instances = [];
             this.items.forEach(item => item.classList.remove(this.modifiers.itemSelected));
             classList.remove(active);
             this.setState({ layoutActive: false });

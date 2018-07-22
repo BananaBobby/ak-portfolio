@@ -1,3 +1,4 @@
+import Player from '@vimeo/player';
 import { Component } from '../lib/component';
 import registry from '../lib/registry';
 
@@ -11,7 +12,7 @@ const mediaTemplate = (data) => {
         return `
             <div class="viewer__video">
                   <img class="viewer__video-holder" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-                  <iframe src="${data.video}?autoplay=1&muted=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                  <iframe src="${data.video}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
         `;
     }
@@ -70,8 +71,8 @@ class Gallery extends Component {
         this.action = root.querySelector(this.selectors.action);
         this.info = root.querySelector(this.selectors.actionInfo);
         this.media = root.querySelector(this.selectors.media);
-        this.prev = root.querySelector(this.selectors.prev);
-        this.next = root.querySelector(this.selectors.next);
+        // this.prev = root.querySelector(this.selectors.prev);
+        // this.next = root.querySelector(this.selectors.next);
     }
 
     _handleKeyDown = (e) => {
@@ -120,7 +121,14 @@ class Gallery extends Component {
 
         this.photos = this.media.querySelectorAll(this.selectors.src);
 
-        this.setActivePhoto(0);
+        if (post.video) {
+            const iframe = this.media.querySelector('iframe');
+            const player = new Player(iframe);
+
+            player.play();
+        } else {
+            this.setActivePhoto(0);
+        }
         this.toggle();
     };
 

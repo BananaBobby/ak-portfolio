@@ -43,6 +43,7 @@ export class Component {
             let presetEl;
 
             if (elName === 'window') presetEl = window;
+            if (elName === 'body') presetEl = document.body;
             if (elName === 'root') presetEl = this.root;
 
             if (presetEl) {

@@ -14,7 +14,6 @@ class ContentSlider extends Component {
 
         this.state = {
             activeIndex: 0,
-            id: Math.random(),
         };
 
         this.handlers = {

@@ -9,7 +9,7 @@ const rubrics = names.map(name => {
         name,
         path: path.join(postsPath, name)
     };
-})
+});
 
 const rubricsData = rubrics.map(rubric => {
     const postFiles = fs.readdirSync(rubric.path);
