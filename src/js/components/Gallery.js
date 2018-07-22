@@ -123,9 +123,9 @@ class Gallery extends Component {
 
         if (post.video) {
             const iframe = this.media.querySelector('iframe');
-            const player = new Player(iframe);
+            this.player = new Player(iframe);
 
-            player.play();
+            this.player.play();
         } else {
             this.setActivePhoto(0);
         }
@@ -161,6 +161,10 @@ class Gallery extends Component {
 
     toggle = (flag) => {
         const isActive = flag !== undefined ? flag : !this.state.active;
+
+        if (this.player && !isActive) {
+            this.player.pause();
+        }
 
         this.viewer.classList[isActive ? 'add' : 'remove'](this.modifiers.active);
         this.setState({ active: isActive });
