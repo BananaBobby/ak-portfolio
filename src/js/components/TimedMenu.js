@@ -101,13 +101,15 @@ class TimedMenu extends Component {
         this._initSlider(index);
     };
 
-    _handleSliderPrev = () => {
+    _handleSliderPrev = (e) => {
+        e.preventDefault();
         if (!this.instances[this.state.activeSliderIndex]) return;
 
         this.instances[this.state.activeSliderIndex].setPreviousSlide();
     };
 
-    _handleSliderNext = () => {
+    _handleSliderNext = (e) => {
+        e.preventDefault();
         if (!this.instances[this.state.activeSliderIndex]) return;
 
         this.instances[this.state.activeSliderIndex].setNextSlide();
@@ -119,15 +121,20 @@ class TimedMenu extends Component {
             this.sliderNext.removeEventListener('click', this._handleSliderNext);
         }
 
-        if (!this.instances[index]) {
+        const newInstance = !this.instances[index]
+
+        if (newInstance) {
             const sliderEl = this.sliders[index];
             this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl);
-            this.instances[index].mount();
         }
 
         this.setState({ activeSliderIndex: index });
         this.sliderPrev.addEventListener('click', this._handleSliderPrev);
         this.sliderNext.addEventListener('click', this._handleSliderNext);
+
+        if (newInstance) {
+            this.instances[index].mount();
+        }
     };
 
     _setActive = (index) => {

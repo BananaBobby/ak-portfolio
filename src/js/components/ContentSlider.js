@@ -57,15 +57,13 @@ class ContentSlider extends Component {
         switch (e.which) {
             case 40: {
                 e.preventDefault();
-                const index = Math.min(this.items.length - 1, this.state.activeIndex + 1);
-                this.setSlide(index);
+                this.setNextSlide();
                 break;
             }
 
             case 38: {
                 e.preventDefault();
-                const index = Math.max(0, this.state.activeIndex - 1);
-                this.setSlide(index);
+                this.setPreviousSlide();
                 break;
             }
 
@@ -86,7 +84,6 @@ class ContentSlider extends Component {
 
     setSlide = (index) => {
         const item = this.items[index];
-
 
         if (!item) return;
         if (index < 0 || index > this.items.length - 1) return;
