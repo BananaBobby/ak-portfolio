@@ -14,7 +14,7 @@ class TimedMenu extends Component {
             contentType: '.js-timed-menu__content-type',
             slider: '.js-content-slider',
             sliderPrev: '.js-timed-menu__slider-prev',
-            sliderNext: '.js-timed-menu__slider-next'
+            sliderNext: '.js-timed-menu__slider-next',
         };
 
         this.state = {
@@ -35,7 +35,6 @@ class TimedMenu extends Component {
         this.handlers = {
             'more@click': this._handleMoreClick,
             'close@click': this._handleClose,
-            'window@keydown': this._handleKeyDown,
             'item@click': this._handleItemClick,
         };
 
@@ -49,13 +48,6 @@ class TimedMenu extends Component {
         this.timer = null;
         this.instances = [];
     }
-
-    _handleKeyDown = (e) => {
-        if (e.which === 27) {
-            e.preventDefault();
-            this._handleClose();
-        }
-    };
 
     _handleClose = () => {
         const classList = this.root.classList;

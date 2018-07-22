@@ -41,7 +41,7 @@ const rubricsData = rubrics.map(rubric => {
         const isHalfLast = (post.type === 'half-vertical' || post.type === 'half-horizontal') && slidePosts === 2;
 
         if (hasTypeChanged || isLast || isFullLast || isQuarterLast || isHalfLast) {
-            slides.push(slidePosts);
+            slides.push({ posts: slidePosts, type: post.type });
             slidePosts = [];
         }
     });

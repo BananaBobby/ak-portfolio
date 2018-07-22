@@ -19,7 +19,10 @@ body
                     each rubric in rubrics
                         div.layout__previews-section.js-timed-menu__section
                             each post in rubric.previews
-                                a.layout__preview.preview.js-gallery__preview(href="#")
+                                a.layout__preview.preview.js-gallery__preview(
+                                    href="#"
+                                    data-post=post
+                                )
                                     div.preview__img(style="background-image: url(" + post.preview + ")")
                                     div.preview__action
                                         i.material-icons
@@ -51,10 +54,12 @@ body
                             div.layout__content-type.js-timed-menu__content-type.js-content-slider
                                 div.content-slider.js-content-slider__scroll
                                     each slide in rubric.slides
-                                        div.content-slider__slide.content-slider__slide_single.js-content-slider__item
+                                        div(class="content-slider__slide content-slider__slide_" + slide.type + " js-content-slider__item")
                                             div.content-slider__wrapper
-                                                each post in slide
-                                                    div.content-slider__item
+                                                each post in slide.posts
+                                                    div.content-slider__item.js-gallery__preview(
+                                                        data-post=post
+                                                    )
                                                         div.content-slider__holder
                                                             div.content-slider__inner(style="background-image: url(" + post.preview + ")")
                                                                 div.content-slider__action
@@ -91,18 +96,14 @@ body
                         i.material-icons
                             | subject
 
-                    div.viewer__action-container
-                        div.viewer__action-title
-                            | Starring
-                        div.viewer__action-text
-                            | Starring represents the astronomy as well as the fellow females in the lives of women.
+                    div.viewer__action-container.js-gallery__info
 
-                div.viewer__prev.material-icons
+                div.viewer__control.viewer__control_prev.material-icons.js-gallery__prev
                     | arrow_back
-                div.viewer__next.material-icons
+                div.viewer__control.viewer__control_next.material-icons.js-gallery__next
                     | arrow_forward
 
                 div.viewer__media
-                    img.viewer__src(src="/public/img/starring.jpg")
-                    //iframe(src="https://player.vimeo.com/video/251643698?autoplay=1&muted=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+                    div.viewer__container.js-gallery__media
+
     include ./inc/footer.pug
