@@ -1,9 +1,9 @@
 title: Post name
 description: Post description
 type: full, half-vertical, half-horizontal, quarter
-preview: image url (for posts list)
-previewSmall: image url (for main page)
-video: https://player.vimeo.com/video/274348043
+preview: image url or path (for posts list)
+previewSmall: image url or path (for main page)
+video: https://player.vimeo.com/video/274348043 (Go to vimeo video page, press share, get url from embed section)
 photos:
-  - image url
-  - image url
+  - image url or path
+  - image url or path
