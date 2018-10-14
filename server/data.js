@@ -19,6 +19,8 @@ const rubricsData = rubrics.map(rubric => {
         const postPath = path.resolve(rubric.path, name);
         let doc;
 
+        if (!name.includes('yaml')) return null;
+
         try {
             doc = yaml.safeLoad(fs.readFileSync(postPath, 'utf8'));
         } catch (e) {
@@ -26,7 +28,7 @@ const rubricsData = rubrics.map(rubric => {
         }
 
         return doc;
-    });
+    }).filter(Boolean);
 
     posts.forEach((post, index) => {
         slidePosts.push(post);
