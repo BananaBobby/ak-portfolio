@@ -1,0 +1,9 @@
+title: Post name
+description: Post description
+type: full, half-vertical, half-horizontal, quarter
+preview: image url (for posts list)
+previewSmall: image url (for main page)
+video: https://player.vimeo.com/video/274348043
+photos:
+  - image url
+  - image url
