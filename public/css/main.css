@@ -322,10 +322,14 @@ h1 {
     margin-left: -20px; }
     .content-slider__slide_half-vertical .content-slider__item {
       width: 50%; }
+    .content-slider__slide_half-vertical .content-slider__title {
+      font-size: 28px; }
     .content-slider__slide_half-horizontal {
       flex-flow: column wrap; }
       .content-slider__slide_half-horizontal .content-slider__item {
         height: 50%; }
+      .content-slider__slide_half-horizontal .content-slider__title {
+        font-size: 28px; }
     .content-slider__slide_quarter .content-slider__item {
       width: 50%;
       height: 50%; }
@@ -392,6 +396,8 @@ h1 {
     font-size: 36px; }
   .content-slider__description {
     margin-top: 12px; }
+    .content-slider__description:empty {
+      margin-top: 0; }
 
 .viewer {
   position: fixed;

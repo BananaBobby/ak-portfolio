@@ -438,8 +438,14 @@ h1 {
     height: 100%;
     margin-left: -20px;
 
-    &_half-vertical .content-slider__item {
-      width: 50%;
+    &_half-vertical {
+      .content-slider__item {
+        width: 50%;
+      }
+
+      .content-slider__title {
+        font-size: 28px;
+      }
     }
 
     &_half-horizontal {
@@ -447,6 +453,10 @@ h1 {
 
       & .content-slider__item {
         height: 50%;
+      }
+
+      .content-slider__title {
+        font-size: 28px;
       }
     }
 
@@ -539,6 +549,10 @@ h1 {
 
   &__description {
     margin-top: 12px;
+
+    &:empty {
+      margin-top: 0;
+    }
   }
 }
 
