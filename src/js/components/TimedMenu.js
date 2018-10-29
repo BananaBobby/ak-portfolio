@@ -30,7 +30,8 @@ class TimedMenu extends Component {
             itemActive: 'menu__item_active',
             itemSelected: 'menu__item_selected',
             sectionActive: 'layout__previews-section_active',
-            typeActive: 'layout__content-type_active'
+            typeActive: 'layout__content-type_active',
+            controlHidden: 'layout__control_hidden',
         };
 
         this.handlers = {
@@ -56,7 +57,6 @@ class TimedMenu extends Component {
         if (!this.instances.length || this.state.activeSliderIndex === null) return;
 
         const scroll = this.scrolls[this.state.activeSliderIndex];
-        console.log(e.deltaY);
         scroll.scrollBy({ top: e.deltaY });
     };
 
@@ -109,14 +109,20 @@ class TimedMenu extends Component {
         e.preventDefault();
         if (!this.instances[this.state.activeSliderIndex]) return;
 
-        this.instances[this.state.activeSliderIndex].setPreviousSlide();
+        const { isFirst, isLast } = this.instances[this.state.activeSliderIndex].setPreviousSlide();
+
+      this.sliderPrev.classList.toggle(this.modifiers.controlHidden, isFirst);
+      this.sliderNext.classList.toggle(this.modifiers.controlHidden, isLast);
     };
 
     _handleSliderNext = (e) => {
         e.preventDefault();
         if (!this.instances[this.state.activeSliderIndex]) return;
 
-        this.instances[this.state.activeSliderIndex].setNextSlide();
+        const { isLast, isFirst } = this.instances[this.state.activeSliderIndex].setNextSlide();
+
+        this.sliderPrev.classList.toggle(this.modifiers.controlHidden, isFirst);
+        this.sliderNext.classList.toggle(this.modifiers.controlHidden, isLast);
     };
 
     _initSlider = (index) => {
@@ -125,20 +131,20 @@ class TimedMenu extends Component {
             this.sliderNext.removeEventListener('click', this._handleSliderNext);
         }
 
-        const newInstance = !this.instances[index]
-
-        if (newInstance) {
-            const sliderEl = this.sliders[index];
-            this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl);
+        if (this.instances[index]) {
+            this.instances[index].unmount();
         }
 
+        const sliderEl = this.sliders[index];
+        this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl);
+
         this.setState({ activeSliderIndex: index });
+        this.sliderPrev.classList.add(this.modifiers.controlHidden);
+        this.sliderNext.classList.remove(this.modifiers.controlHidden);
         this.sliderPrev.addEventListener('click', this._handleSliderPrev);
         this.sliderNext.addEventListener('click', this._handleSliderNext);
 
-        if (newInstance) {
-            this.instances[index].mount();
-        }
+        this.instances[index].mount();
     };
 
     _setActive = (index) => {

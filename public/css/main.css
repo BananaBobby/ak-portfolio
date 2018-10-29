@@ -80,6 +80,9 @@ h1 {
       transition: transform 0.2s ease-in-out; }
     .layout__control:hover:after {
       transform: translate(-50%, -50%) scale(1); }
+    .layout__control_hidden {
+      opacity: 0.4;
+      pointer-events: none; }
   .layout__control-icon {
     font-size: 24px;
     color: #333;

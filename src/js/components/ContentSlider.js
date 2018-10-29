@@ -10,14 +10,21 @@ class ContentSlider extends Component {
             item: '.js-content-slider__item',
             control: '.js-content-slider__control',
             reset: '.js-content-slider__reset',
+            prev: '.js-content-slider__control-prev',
+            next: '.js-content-slider__control-next',
+        };
+
+        this.modifiers = {
+            controlHidden: 'layout__control--hidden',
         };
 
         this.state = {
             activeIndex: 0,
+            prevIndex: -1,
+            nextIndex: 1,
         };
 
         this.handlers = {
-            'control@click': this._handleControlClick,
             'reset@click': this._handleReset,
             'window@keydown': this._handleKeyDown,
             'scroll@scroll': this._handleScroll,
@@ -25,30 +32,24 @@ class ContentSlider extends Component {
 
         this.items = this.root.querySelectorAll(this.selectors.item);
         this.scroll = this.root.querySelector(this.selectors.scroll);
+        this.prev = this.root.querySelector(this.selectors.prev);
+        this.next = this.root.querySelector(this.selectors.next);
     }
 
     _handleScroll = () => {
         const height = this.scroll.clientHeight;
         const scroll = this.scroll.scrollTop;
-        const nextIndex = Math.floor(scroll / height);
+        const remain = scroll % height;
+        let prevIndex = Math.floor(scroll / height);
+        if (remain === 0) prevIndex -= 1;
 
-        if (nextIndex !== this.state.activeIndex) {
-            this.setState({ activeIndex: nextIndex });
-        }
-    };
+        let nextIndex = Math.floor(scroll / height) + 1;
+        // if (remain === 0) nextIndex += 1;
 
-    _handleControlClick = (e) => {
-        e.preventDefault();
-        const el = e.delegateTarget;
-        const direction = el.getAttribute('data-direction');
-        const delta = direction === 'next' ? 1 : -1;
-        const nextIndex = this.state.activeIndex + delta;
-
-        this.setSlide(nextIndex);
+        this.setState({ prevIndex, nextIndex });
     };
 
     _handleReset = () => {
-        if (this.state.activeIndex === 0) return;
         this.setSlide(0);
     };
 
@@ -74,21 +75,30 @@ class ContentSlider extends Component {
     };
 
     setNextSlide = () => {
-        this.setSlide(this.state.activeIndex + 1);
+        const index = this.setSlide(this.state.nextIndex);
+
+        return { index, isLast: index === this.items.length - 1, isFirst: index === 0 };
     };
 
     setPreviousSlide = () => {
-        this.setSlide(this.state.activeIndex - 1);
+        const index = this.setSlide(this.state.prevIndex);
+
+        return { index, isLast: index === this.items.length - 1, isFirst: index === 0 };
     };
 
     setSlide = (index) => {
-        const item = this.items[index];
+        const realIndex = Math.min(Math.max(0, index), this.items.length - 1);
+        const item = this.items[realIndex];
 
         if (!item) return;
-        if (index < 0 || index > this.items.length - 1) return;
+
+        const prevIndex = realIndex - 1;
+        const nextIndex = realIndex + 1;
 
         item.scrollIntoView({ behavior: 'smooth' });
-        this.setState({ activeIndex: index });
+        this.setState({ prevIndex, nextIndex });
+
+        return realIndex;
     };
 
     onMount() {}

@@ -103,6 +103,11 @@ h1 {
     &:hover:after {
       transform: translate(-50%, -50%) scale(1);
     }
+
+    &_hidden {
+      opacity: 0.4;
+      pointer-events: none;
+    }
   }
 
   &__control-icon {
