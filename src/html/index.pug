@@ -23,6 +23,9 @@ body
                                     href="#"
                                     data-post=post
                                 )
+                                    if post.soon
+                                        div.preview__badge
+                                            | Soon
                                     div.preview__img(style="background-image: url(" + post.previewSmall + ")")
                                     div.preview__action
                                         i.material-icons
@@ -62,6 +65,9 @@ body
                                                     )
                                                         div.content-slider__holder
                                                             div.content-slider__inner(style="background-image: url(" + post.preview + ")")
+                                                                if post.soon
+                                                                    div.content-slider__badge
+                                                                        | Soon
                                                                 div.content-slider__action
                                                                     i.material-icons
                                                                         if post.video
