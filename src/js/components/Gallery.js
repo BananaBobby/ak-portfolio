@@ -71,8 +71,8 @@ class Gallery extends Component {
         this.action = root.querySelector(this.selectors.action);
         this.info = root.querySelector(this.selectors.actionInfo);
         this.media = root.querySelector(this.selectors.media);
-        // this.prev = root.querySelector(this.selectors.prev);
-        // this.next = root.querySelector(this.selectors.next);
+        this.prev = root.querySelector(this.selectors.prev);
+        this.next = root.querySelector(this.selectors.next);
     }
 
     _handleKeyDown = (e) => {
@@ -136,25 +136,25 @@ class Gallery extends Component {
         e.preventDefault();
 
         const nextIndex = this.state.activeIndex - 1;
-        this.setActivePhoto(nextIndex < 0 ? this.photos.length - 1 : nextIndex);
+        this.setActivePhoto(nextIndex);
     };
 
     _handleNextClick = (e) => {
         e.preventDefault();
 
         const nextIndex = this.state.activeIndex + 1;
-        this.setActivePhoto(nextIndex > this.photos.length - 1 ? 0 : nextIndex);
+        this.setActivePhoto(nextIndex);
     };
 
     setActivePhoto = (index) => {
         if (!this.post || !this.post.photos || !this.photos) return;
-        // if (index < 0 || index > this.post.photos.length - 1) return;
+        if (index < 0 || index > this.post.photos.length - 1) return;
 
         this.photos.forEach(el => el.classList.remove(this.modifiers.photoActive));
         this.photos[index].classList.add(this.modifiers.photoActive);
 
-        // this.prev.classList[index === 0 ? 'add' : 'remove'](this.modifiers.controlHidden);
-        // this.next.classList[index === this.post.photos.length - 1 ? 'add' : 'remove'](this.modifiers.controlHidden);
+        this.prev.classList[index === 0 ? 'add' : 'remove'](this.modifiers.controlHidden);
+        this.next.classList[index === this.post.photos.length - 1 ? 'add' : 'remove'](this.modifiers.controlHidden);
 
         this.setState({ activeIndex: index });
     };
