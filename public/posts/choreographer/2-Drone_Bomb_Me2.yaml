@@ -3,4 +3,5 @@ description: Solo improvisation work inspired by musical narratives of Anohni. '
 type: full
 preview: /public/img/content/Dancer/Drone_Bomb_Me/DRBM.jpg
 previewSmall: /public/img/content/Dancer/Drone_Bomb_Me/DRBM.jpg
-video: https://player.vimeo.com/video/221799686
+media:
+  - https://player.vimeo.com/video/221799686

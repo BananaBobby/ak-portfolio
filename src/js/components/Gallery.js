@@ -7,20 +7,25 @@ const infoTemplate = (data) => `
     <div class="viewer__action-text">${data.description}</div>
 `;
 
-const mediaTemplate = (data) => {
-    if (data.video) {
-        return `
-            <div class="viewer__video">
-                  <img class="viewer__video-holder" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-                  <iframe src="${data.video}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            </div>
-        `;
-    }
+const isVideo = url => url.includes('vimeo.com');
 
+const mediaTemplate = (data) => {
     let res = '';
 
-    data.photos.forEach((photo, index) => {
-        res += `<img class="viewer__src js-gallery__src ${!index && 'viewer__src_active'}" src="${photo}" />`;
+    if (!data.media) return res;
+
+    data.media.forEach((url, index) => {
+        if (isVideo(url)) {
+            res += `
+                <div class="viewer__slide js-gallery__slide ${!index && 'viewer__slide_active'}">
+                      <img class="viewer__video-holder" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+                      <iframe src="${url}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            `;
+            return;
+        }
+
+        res += `<div class="viewer__slide js-gallery__slide ${!index && 'viewer__slide_active'}"><img class="viewer__src" src="${url}" /></div>`;
     });
 
     return res;
@@ -40,7 +45,7 @@ class Gallery extends Component {
             media: '.js-gallery__media',
             prev: '.js-gallery__prev',
             next: '.js-gallery__next',
-            src: '.js-gallery__src'
+            slide: '.js-gallery__slide'
         };
 
         this.modifiers = {
@@ -48,7 +53,7 @@ class Gallery extends Component {
           actionActive: 'viewer__action_active',
           typePhoto: 'viewer_photo',
           typeVideo: 'viewer_video',
-          photoActive: 'viewer__src_active',
+          slideActive: 'viewer__slide_active',
           controlHidden: 'viewer__control_hidden'
         };
 
@@ -90,8 +95,7 @@ class Gallery extends Component {
             }
 
             case 27: {
-                e.preventDefault();
-                this.toggle(false);
+                this._handleClose(e);
                 break;
             }
         }
@@ -105,6 +109,7 @@ class Gallery extends Component {
     _handleClose = (e) => {
         e.preventDefault();
         this.toggle();
+        this.togglePlayer(false);
         this.toggleAction(false);
     };
 
@@ -119,52 +124,58 @@ class Gallery extends Component {
         this.viewer.classList.remove(this.modifiers.typePhoto, this.modifiers.typeVideo);
         this.viewer.classList.add(post.video ? this.modifiers.typeVideo : this.modifiers.typePhoto);
 
-        this.photos = this.media.querySelectorAll(this.selectors.src);
+        this.slides = this.media.querySelectorAll(this.selectors.slide);
 
-        if (post.video) {
-            const iframe = this.media.querySelector('iframe');
-            this.player = new Player(iframe);
-
-            this.player.play();
-        } else {
-            this.setActivePhoto(0);
-        }
+        this.setActiveSlide(0);
         this.toggle();
+        this.togglePlayer(true);
     };
 
     _handlePrevClick = (e) => {
         e.preventDefault();
 
         const nextIndex = this.state.activeIndex - 1;
-        this.setActivePhoto(nextIndex);
+        this.togglePlayer(false);
+        this.setActiveSlide(nextIndex);
+        this.togglePlayer(true);
     };
 
     _handleNextClick = (e) => {
         e.preventDefault();
 
         const nextIndex = this.state.activeIndex + 1;
-        this.setActivePhoto(nextIndex);
+        this.togglePlayer(false);
+        this.setActiveSlide(nextIndex);
+        this.togglePlayer(true);
     };
 
-    setActivePhoto = (index) => {
-        if (!this.post || !this.post.photos || !this.photos) return;
-        if (index < 0 || index > this.post.photos.length - 1) return;
+    setActiveSlide = (index) => {
+        if (!this.post || !this.post.media || !this.slides) return;
+        if (index < 0 || index > this.post.media.length - 1) return;
 
-        this.photos.forEach(el => el.classList.remove(this.modifiers.photoActive));
-        this.photos[index].classList.add(this.modifiers.photoActive);
+        this.player = null;
+
+        this.slides.forEach(el => el.classList.remove(this.modifiers.slideActive));
+        this.slides[index].classList.add(this.modifiers.slideActive);
 
         this.prev.classList[index === 0 ? 'add' : 'remove'](this.modifiers.controlHidden);
-        this.next.classList[index === this.post.photos.length - 1 ? 'add' : 'remove'](this.modifiers.controlHidden);
+        this.next.classList[index === this.post.media.length - 1 ? 'add' : 'remove'](this.modifiers.controlHidden);
 
         this.setState({ activeIndex: index });
+
+        if (isVideo(this.post.media[index])) {
+            const iframe = this.slides[index].querySelector('iframe');
+            this.player = new Player(iframe);
+        }
+    };
+
+    togglePlayer = (isActive) => {
+      if (this.player && !isActive) this.player.pause();
+      if (this.player && isActive) this.player.play();
     };
 
     toggle = (flag) => {
         const isActive = flag !== undefined ? flag : !this.state.active;
-
-        if (this.player && !isActive) {
-            this.player.pause();
-        }
 
         this.viewer.classList[isActive ? 'add' : 'remove'](this.modifiers.active);
         this.setState({ active: isActive });

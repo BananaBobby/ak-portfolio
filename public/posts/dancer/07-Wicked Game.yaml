@@ -3,4 +3,5 @@ description: Short movement video choreographed and directed by Artem Volosov (U
 type: quarter
 preview: /public/img/content/Dancer/Wicked_game/Wicked_game.png
 previewSmall: /public/img/content/Dancer/Wicked_game/Wicked_game.png
-video: https://player.vimeo.com/video/251640524
+media:
+  - https://player.vimeo.com/video/251640524

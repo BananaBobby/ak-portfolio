@@ -3,4 +3,5 @@ description: Short movement film created for Dansblok festival in Leiden, Nether
 type: quarter
 preview: /public/img/content/Dancer/Starring/IMG_3074.JPG
 previewSmall: /public/img/content/Dancer/Starring/IMG_3074.JPG
-video: https://player.vimeo.com/video/283516355
+media:
+  - https://player.vimeo.com/video/283516355

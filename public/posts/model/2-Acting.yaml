@@ -3,7 +3,7 @@ description: Portfolio
 type: half-vertical
 preview: /public/img/content/Acting/IMG_2857.JPG
 previewSmall: /public/img/content/Acting/IMG_2857.JPG
-photos:
+media:
   - /public/img/content/Acting/IMG_2857.JPG
   - /public/img/content/Acting/IMG_2861.JPG
   - /public/img/content/Acting/IMG_2859.JPG
