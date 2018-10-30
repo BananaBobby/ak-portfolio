@@ -29,10 +29,10 @@ body
                                     div.preview__img(style="background-image: url(" + post.previewSmall + ")")
                                     div.preview__action
                                         i.material-icons
-                                            if post.video
-                                                | play_arrow
-                                            else
-                                                | search
+                                            - if (post.media[0].includes('vimeo.com'))
+                                              | play_arrow
+                                            - else
+                                              | search
 
                 div.layout__more
                     a.link.js-timed-menu__more(href="#")
@@ -70,10 +70,11 @@ body
                                                                         | Soon
                                                                 div.content-slider__action
                                                                     i.material-icons
-                                                                        if post.video
-                                                                            | play_arrow
-                                                                        else
-                                                                            | search
+                                                                        - if (post.media[0].includes('vimeo.com'))
+                                                                          | play_arrow
+                                                                        - else
+                                                                          | search
+
                                                                 div.content-slider__info
                                                                     div.content-slider__title
                                                                         = post.title
