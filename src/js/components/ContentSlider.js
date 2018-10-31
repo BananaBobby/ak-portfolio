@@ -18,6 +18,8 @@ class ContentSlider extends Component {
             controlHidden: 'layout__control--hidden',
         };
 
+        this.props = {};
+
         this.state = {
             activeIndex: 0,
             prevIndex: -1,
@@ -47,6 +49,13 @@ class ContentSlider extends Component {
         // if (remain === 0) nextIndex += 1;
 
         this.setState({ prevIndex, nextIndex });
+
+        if (this.props.onScroll) {
+            this.props.onScroll({
+              isFirst: prevIndex < 0,
+              isLast: nextIndex >= this.items.length,
+            })
+        }
     };
 
     _handleReset = () => {

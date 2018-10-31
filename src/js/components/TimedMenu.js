@@ -111,8 +111,8 @@ class TimedMenu extends Component {
 
         const { isFirst, isLast } = this.instances[this.state.activeSliderIndex].setPreviousSlide();
 
-      this.sliderPrev.classList.toggle(this.modifiers.controlHidden, isFirst);
-      this.sliderNext.classList.toggle(this.modifiers.controlHidden, isLast);
+        this.sliderPrev.classList.toggle(this.modifiers.controlHidden, isFirst);
+        this.sliderNext.classList.toggle(this.modifiers.controlHidden, isLast);
     };
 
     _handleSliderNext = (e) => {
@@ -136,7 +136,13 @@ class TimedMenu extends Component {
         }
 
         const sliderEl = this.sliders[index];
-        this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl);
+        this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl, {
+            onScroll: ({ isFirst, isLast }) => {
+                console.log(isFirst, isLast);
+                this.sliderPrev.classList.toggle(this.modifiers.controlHidden, isFirst);
+                this.sliderNext.classList.toggle(this.modifiers.controlHidden, isLast);
+            }
+        });
 
         this.setState({ activeSliderIndex: index });
         this.sliderPrev.classList.add(this.modifiers.controlHidden);
