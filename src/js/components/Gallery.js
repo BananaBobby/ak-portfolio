@@ -25,7 +25,7 @@ const mediaTemplate = (data) => {
             return;
         }
 
-        res += `<img class="viewer__slide js-gallery__slide ${!index && 'viewer__slide_active'}" src="${url}" />`;
+        res += `<img class="viewer__slide js-gallery__slide ${!index && 'viewer__slide_active'}"   src="${url}" />`;
     });
 
     return res;
