@@ -55,6 +55,7 @@ class TimedMenu extends Component {
 
     _handleMousewheel = (e) => {
         if (!this.instances.length || this.state.activeSliderIndex === null) return;
+        if (document.body.style.overflow === 'hidden') return;
 
         const scroll = this.scrolls[this.state.activeSliderIndex];
         scroll.scrollBy({ top: e.deltaY });
@@ -138,7 +139,6 @@ class TimedMenu extends Component {
         const sliderEl = this.sliders[index];
         this.instances[index] = window.AB.getInstance('ContentSlider', sliderEl, {
             onScroll: ({ isFirst, isLast }) => {
-                console.log(isFirst, isLast);
                 this.sliderPrev.classList.toggle(this.modifiers.controlHidden, isFirst);
                 this.sliderNext.classList.toggle(this.modifiers.controlHidden, isLast);
             }

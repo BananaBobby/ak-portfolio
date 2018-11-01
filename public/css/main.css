@@ -443,6 +443,19 @@ h1 {
     background: rgba(0, 0, 0, 0.8);
     user-select: none;
     z-index: 5; }
+  .viewer__close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: #fff;
+    padding: 20px;
+    background: none;
+    border: none;
+    z-index: 6;
+    cursor: pointer;
+    outline: none; }
+  .viewer__close-icon {
+    font-size: 36px; }
   .viewer__media {
     padding: 80px;
     height: 100%;
@@ -516,8 +529,8 @@ h1 {
   .viewer__action-text {
     margin-top: 8px; }
   .viewer__action-button {
-    width: 52px;
     height: 52px;
+    padding: 0 16px;
     color: #fff;
     background: #212121;
     transition: background-color 0.2s ease-in-out;
@@ -531,6 +544,8 @@ h1 {
     user-select: none; }
     .viewer__action-button:hover {
       background: #333333; }
+  .viewer__action-button-text {
+    margin-left: 12px; }
   .viewer__container {
     position: relative;
     width: 100%;

@@ -179,7 +179,22 @@ class Gallery extends Component {
 
         this.viewer.classList[isActive ? 'add' : 'remove'](this.modifiers.active);
         this.setState({ active: isActive });
+
+        if (isActive) {
+            this._preventBodyScroll()
+        } else {
+            this._releaseBodyScroll();
+        }
     };
+
+    _preventBodyScroll() {
+        this._overflowStyle = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+    }
+
+    _releaseBodyScroll() {
+        document.body.style.overflow = this._overflowStyle;
+    }
 
     toggleAction = (flag) => {
         const isActive = flag !== undefined ? flag : !this.state.actionActive;

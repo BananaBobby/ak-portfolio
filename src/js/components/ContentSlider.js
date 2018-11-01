@@ -2,7 +2,7 @@ import { Component } from '../lib/component';
 import registry from '../lib/registry';
 
 class ContentSlider extends Component {
-    constructor(root) {
+    constructor(root, props) {
         super(root);
 
         this.selectors = {
@@ -18,7 +18,9 @@ class ContentSlider extends Component {
             controlHidden: 'layout__control--hidden',
         };
 
-        this.props = {};
+        this.props = {
+            ...props,
+        };
 
         this.state = {
             activeIndex: 0,
@@ -34,8 +36,6 @@ class ContentSlider extends Component {
 
         this.items = this.root.querySelectorAll(this.selectors.item);
         this.scroll = this.root.querySelector(this.selectors.scroll);
-        this.prev = this.root.querySelector(this.selectors.prev);
-        this.next = this.root.querySelector(this.selectors.next);
     }
 
     _handleScroll = () => {

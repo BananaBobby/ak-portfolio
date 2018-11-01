@@ -95,13 +95,20 @@ body
                 | CV
 
         div.viewer.js-gallery__viewer
-            div.viewer__overlay.js-gallery__close
+            div.viewer__overlay //.js-gallery__close
+
+            button.viewer__close.js-gallery__close
+                i.viewer__close-icon.material-icons
+                    | close
 
             div.viewer__inner
                 div.viewer__action.js-gallery__action
                     div.viewer__action-button.js-gallery__action-button
                         i.material-icons
                             | subject
+
+                        span.viewer__action-button-text
+                            | Read more
 
                     div.viewer__action-container.js-gallery__info
 

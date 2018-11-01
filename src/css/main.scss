@@ -609,6 +609,22 @@ h1 {
     z-index: 5;
   }
 
+  &__close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: #fff;
+    padding: 20px;
+    background: none;
+    border: none;
+    z-index: 6;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__close-icon {
+    font-size: 36px;
+  }
 
   &__media {
     padding: 80px;
@@ -709,8 +725,9 @@ h1 {
   }
 
   &__action-button {
-    width: 52px;
+    //width: 52px;
     height: 52px;
+    padding: 0 16px;
     color: #fff;
     background: #212121;
     transition: background-color 0.2s ease-in-out;
@@ -726,6 +743,10 @@ h1 {
     &:hover {
       background: #333333;
     }
+  }
+
+  &__action-button-text {
+    margin-left: 12px;
   }
 
   &__container {
