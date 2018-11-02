@@ -2,7 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Ubuntu', sans-serif;
-  color: #333;
+  color: #333; }
+
+html,
+body {
+  position: fixed;
   overflow: hidden; }
 
 h1 {
@@ -10,16 +14,21 @@ h1 {
 
 .layout {
   padding: 20px;
-  max-width: 2000px;
-  margin: 0 auto;
-  display: flex;
-  height: 100%;
   box-sizing: border-box;
-  align-items: center;
-  position: relative;
-  min-height: 700px;
-  min-width: 1200px;
-  overflow: hidden; }
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
+  .layout__holder {
+    height: 100%;
+    width: 100%;
+    min-height: 700px;
+    min-width: 1200px;
+    display: flex;
+    max-width: 2000px;
+    position: relative;
+    margin: 0 auto;
+    align-items: center; }
   .layout__side {
     width: 40%;
     padding-left: 60px;
@@ -158,8 +167,8 @@ h1 {
     margin-top: 20px; }
   .layout__shares {
     position: absolute;
-    top: 20px;
-    left: 80px; }
+    top: 0;
+    left: 60px; }
   .layout__share {
     font-size: 14px;
     text-transform: uppercase;
@@ -399,16 +408,17 @@ h1 {
     font-size: 20px;
     transform: translate(-50%, -50%); }
   .content-slider__badge {
-    position: absolute;
+    margin-bottom: 12px;
     text-transform: uppercase;
     background: rgba(255, 255, 255, 0.36);
     border-radius: 2px;
     font-weight: 700;
     font-size: 12px;
     padding: 6px 12px;
-    left: 12px;
-    top: 12px;
-    color: #fff; }
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    opacity: 0.85; }
   .content-slider__info {
     position: absolute;
     bottom: 40px;
@@ -435,6 +445,21 @@ h1 {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; }
+  .viewer__badge {
+    position: absolute;
+    z-index: 20;
+    bottom: 12px;
+    margin-left: 12px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.36);
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 6px 12px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    opacity: 0.85; }
   .viewer__overlay {
     position: fixed;
     top: 0;
@@ -470,14 +495,14 @@ h1 {
     pointer-events: none; }
   .viewer__slide {
     overflow: hidden;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     position: absolute;
     z-index: 10;
     pointer-events: none;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.03);
+    transform: translate(-50%, -50%) scale(1.05);
     opacity: 0;
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out; }
     .viewer__slide_active {
@@ -498,13 +523,14 @@ h1 {
     z-index: 10;
     user-select: none; }
     .viewer__control_hidden {
-      display: none !important; }
+      opacity: 0 !important;
+      cursor: default; }
   .viewer__control_prev {
     left: 20px; }
   .viewer__control_next {
     right: 20px; }
   .viewer__action {
-    right: 20px;
+    left: 20px;
     bottom: 20px;
     position: absolute;
     z-index: 50; }
@@ -518,11 +544,11 @@ h1 {
     background: #fff;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    right: 0;
+    left: 0;
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transform: translateY(-4px) scale(0);
     opacity: 0;
-    transform-origin: 100% 100%;
+    transform-origin: 0 100%;
     width: 400px; }
   .viewer__action-title {
     font-weight: 700;

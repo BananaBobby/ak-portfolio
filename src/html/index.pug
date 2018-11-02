@@ -3,118 +3,120 @@ html
 
 body
     div.layout(data-component="TimedMenu,Gallery")
-        div.layout__side
-            h1.layout__title.js-content-slider__reset.js-timed-menu__close
-                | Anastasia Belyaeva
+        div.layout__holder
+            div.layout__side
+                h1.layout__title.js-content-slider__reset.js-timed-menu__close
+                    | Anastasia Belyaeva
 
-            div.menu.layout__menu
-                each rubric in rubrics
-                    a.menu__item.js-timed-menu__item(href="#")
-                        = rubric.name
-                        div.menu__progress
-                            div.menu__bar.js-timed-menu__progress
-
-            div.layout__preview-box
-                div.layout__previews
+                div.menu.layout__menu
                     each rubric in rubrics
-                        div.layout__previews-section.js-timed-menu__section
-                            each post in rubric.previews
-                                a.layout__preview.preview.js-gallery__preview(
-                                    href="#"
-                                    data-post=post
-                                )
-                                    if post.soon
-                                        div.preview__badge
-                                            | Soon
-                                    div.preview__img(style="background-image: url(" + post.previewSmall + ")")
-                                    div.preview__action
-                                        i.material-icons
-                                            - if (post.media[0].includes('vimeo.com'))
-                                              | play_arrow
-                                            - else
-                                              | search
+                        a.menu__item.js-timed-menu__item(href="#")
+                            = rubric.name
+                            div.menu__progress
+                                div.menu__bar.js-timed-menu__progress
 
-                div.layout__more
-                    a.link.js-timed-menu__more(href="#")
-                        | More
-
-        div.layout__content
-            div.layout__controls
-                a.layout__control.js-content-slider__control-prev.js-timed-menu__slider-prev(href="#")
-                    i.layout__control-icon.material-icons
-                        | arrow_upward
-                a.layout__control.js-content-slider__control-next.js-timed-menu__slider-next(href="#")
-                    i.layout__control-icon.material-icons
-                        | arrow_downward
-
-            div.layout__wrapper
-                div.layout__img
-                div.layout__changer
-                div.layout__changer.layout__changer_secondary
-                div.layout__changer.layout__changer_tertiary
-                    div.layout__inner
+                div.layout__preview-box
+                    div.layout__previews
                         each rubric in rubrics
-                            div.layout__content-type.js-timed-menu__content-type.js-content-slider
-                                div.content-slider.js-content-slider__scroll
-                                    each slide in rubric.slides
-                                        div(class="content-slider__slide content-slider__slide_" + slide.type + " js-content-slider__item")
-                                            div.content-slider__wrapper
-                                                each post in slide.posts
-                                                    div.content-slider__item.js-gallery__preview(
-                                                        data-post=post
-                                                    )
-                                                        div.content-slider__holder
-                                                            div.content-slider__inner(style="background-image: url(" + post.preview + ")")
-                                                                if post.soon
-                                                                    div.content-slider__badge
-                                                                        | Soon
-                                                                div.content-slider__action
-                                                                    i.material-icons
-                                                                        - if (post.media[0].includes('vimeo.com'))
-                                                                          | play_arrow
-                                                                        - else
-                                                                          | search
+                            div.layout__previews-section.js-timed-menu__section
+                                each post in rubric.previews
+                                    a.layout__preview.preview.js-gallery__preview(
+                                        href="#"
+                                        data-post=post
+                                    )
+                                        if post.soon
+                                            div.preview__badge
+                                                | Coming soon
+                                        div.preview__img(style="background-image: url(" + post.previewSmall + ")")
+                                        div.preview__action
+                                            i.material-icons
+                                                - if (post.media[0].includes('vimeo.com'))
+                                                  | play_arrow
+                                                - else
+                                                  | search
 
-                                                                div.content-slider__info
-                                                                    div.content-slider__title
-                                                                        = post.title
-                                                                    div.content-slider__description
-                                                                        = post.description
+                    div.layout__more
+                        a.link.js-timed-menu__more(href="#")
+                            | More
 
-        div.layout__shares
-            a.layout__share(href="https://www.instagram.com/stacie_koch/" target="_blank")
-                | Instagram
+            div.layout__content
+                div.layout__controls
+                    a.layout__control.js-content-slider__control-prev.js-timed-menu__slider-prev(href="#")
+                        i.layout__control-icon.material-icons
+                            | arrow_upward
+                    a.layout__control.js-content-slider__control-next.js-timed-menu__slider-next(href="#")
+                        i.layout__control-icon.material-icons
+                            | arrow_downward
 
-            a.layout__share(href="https://www.facebook.com/blv.anastasia" target="_blank")
-                | Facebook
+                div.layout__wrapper
+                    div.layout__img
+                    div.layout__changer
+                    div.layout__changer.layout__changer_secondary
+                    div.layout__changer.layout__changer_tertiary
+                        div.layout__inner
+                            each rubric in rubrics
+                                div.layout__content-type.js-timed-menu__content-type.js-content-slider
+                                    div.content-slider.js-content-slider__scroll
+                                        each slide in rubric.slides
+                                            div(class="content-slider__slide content-slider__slide_" + slide.type + " js-content-slider__item")
+                                                div.content-slider__wrapper
+                                                    each post in slide.posts
+                                                        div.content-slider__item.js-gallery__preview(
+                                                            data-post=post
+                                                        )
+                                                            div.content-slider__holder
+                                                                div.content-slider__inner(style="background-image: url(" + post.preview + ")")
+                                                                    div.content-slider__action
+                                                                        i.material-icons
+                                                                            - if (post.media[0].includes('vimeo.com'))
+                                                                              | play_arrow
+                                                                            - else
+                                                                              | search
 
-            a.layout__share(href="mailto:blvt.anastasia@gmail.com" target="_blank")
-                | Email
+                                                                    div.content-slider__info
+                                                                        if post.soon
+                                                                            div.content-slider__badge
+                                                                                | Coming soon
 
-        div.viewer.js-gallery__viewer
-            div.viewer__overlay //.js-gallery__close
+                                                                        div.content-slider__title
+                                                                            = post.title
+                                                                        div.content-slider__description
+                                                                            = post.description
 
-            button.viewer__close.js-gallery__close
-                i.viewer__close-icon.material-icons
-                    | close
+            div.layout__shares
+                a.layout__share(href="https://www.instagram.com/stacie_koch/" target="_blank")
+                    | Instagram
 
-            div.viewer__inner
-                div.viewer__action.js-gallery__action
-                    div.viewer__action-button.js-gallery__action-button
-                        i.material-icons
-                            | subject
+                a.layout__share(href="https://www.facebook.com/blv.anastasia" target="_blank")
+                    | Facebook
 
-                        span.viewer__action-button-text
-                            | Read more
+                a.layout__share(href="mailto:blvt.anastasia@gmail.com" target="_blank")
+                    | Email
 
-                    div.viewer__action-container.js-gallery__info
+            div.viewer.js-gallery__viewer
+                div.viewer__overlay.js-gallery__close
 
-                div.viewer__control.viewer__control_prev.material-icons.js-gallery__prev
-                    | arrow_back
-                div.viewer__control.viewer__control_next.material-icons.js-gallery__next
-                    | arrow_forward
+                button.viewer__close.js-gallery__close
+                    i.viewer__close-icon.material-icons
+                        | close
 
-                div.viewer__media
-                    div.viewer__container.js-gallery__media
+                div.viewer__inner
+                    div.viewer__action.js-gallery__action
+                        div.viewer__action-button.js-gallery__action-button
+                            i.material-icons
+                                | subject
+
+                            span.viewer__action-button-text
+                                | Read more
+
+                        div.viewer__action-container.js-gallery__info
+
+                    div.viewer__control.viewer__control_prev.material-icons.js-gallery__prev
+                        | arrow_back
+                    div.viewer__control.viewer__control_next.material-icons.js-gallery__next
+                        | arrow_forward
+
+                    div.viewer__media
+                        div.viewer__container.js-gallery__media
 
     include ./inc/footer.pug
