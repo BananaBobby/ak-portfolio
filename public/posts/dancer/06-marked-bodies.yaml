@@ -4,4 +4,5 @@ description: A short film revealing the 'embodied stories’. Artistic director 
 type: half-horizontal
 preview: /public/img/content/dancer/marked-bodies/main.jpg
 media:
+  - /public/img/content/dancer/marked-bodies/main.jpg
   - /public/img/content/dancer/marked-bodies/1.jpg
