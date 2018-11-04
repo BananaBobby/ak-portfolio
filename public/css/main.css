@@ -611,8 +611,6 @@ h1 {
   .viewer_active {
     opacity: 1;
     visibility: visible; }
-  .viewer_photo .viewer__control {
-    display: block; }
 
 @media (max-width: 1200px) {
   .layout__holder {
@@ -656,15 +654,20 @@ h1 {
       align-items: center;
       justify-content: center; }
     .viewer__control {
-      font-size: 28px; }
+      font-size: 28px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
     .viewer__control_next {
       right: 20px;
-      bottom: 10px;
+      bottom: 0;
       top: auto; }
     .viewer__control_prev {
-      right: 60px;
+      right: 65px;
       left: auto;
-      bottom: 10px;
+      bottom: 0;
       top: auto; }
     .viewer__close-icon {
       font-size: 28px; }

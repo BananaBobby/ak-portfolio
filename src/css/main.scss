@@ -837,12 +837,6 @@ h1 {
     opacity: 1;
     visibility: visible;
   }
-
-  &_photo {
-    .viewer__control {
-      display: block;
-    }
-  }
 }
 
 @media (max-width: 1200px) {
@@ -918,18 +912,23 @@ h1 {
 
     &__control {
       font-size: 28px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &__control_next {
       right: 20px;
-      bottom: 10px;
+      bottom: 0;
       top: auto;
     }
 
     &__control_prev {
-      right: 60px;
+      right: 65px;
       left: auto;
-      bottom: 10px;
+      bottom: 0;
       top: auto;
     }
 
