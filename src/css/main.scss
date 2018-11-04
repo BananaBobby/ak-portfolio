@@ -465,7 +465,7 @@ h1 {
 .content-slider {
   width: 100%;
   height: calc(100% + 20px);
-  overflow: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
   margin-right: -30px;
   padding-right: 30px;
@@ -886,6 +886,7 @@ h1 {
   .content-slider {
     padding: 20px;
     box-sizing: border-box;
+    overflow: auto;
 
     &__back {
       display: flex;

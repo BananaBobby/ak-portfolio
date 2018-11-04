@@ -110,7 +110,9 @@ class ContentSlider extends Component {
         return realIndex;
     };
 
-    onMount() {}
+    onMount() {
+        this.scroll.scrollTop = 0;
+    }
 }
 
 registry.register('ContentSlider', ContentSlider);
