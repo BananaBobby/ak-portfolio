@@ -4,11 +4,36 @@ head
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     link(rel="stylesheet" href="/public/css/main.css")
     link(rel="shortcut icon" href="/public/img/favicon.png")
+    meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+
+    meta(property="og:url" content="https://anastasiabelyaeva.com")
+    meta(name="twitter:url" content="https://anastasiabelyaeva.com")
     link(rel="canonical" href="https://anastasiabelyaeva.com")
+
+    meta(name="subject" content="Dancer portfolio")
+    meta(name="theme-color" content="#fff")
+
     title
-        | Anastasia Belyaeva
+        | Anastasia Belyaeva | Dancer, choreographer, model
+    meta(property="mrc__share_title" content="Anastasia Belyaeva | Dancer, choreographer, model")
+    meta(property="og:title" content="Anastasia Belyaeva | Dancer, choreographer, model")
+    meta(name="twitter:title" content="Anastasia Belyaeva | Dancer, choreographer, model")
+
+    meta(name="description" content="Contemporary dancer and conceptual movement creator based in Amsterdam.")
+    meta(name="mrc__share_description" content="Contemporary dancer and conceptual movement creator based in Amsterdam.")
+    meta(property="og:description" content="Contemporary dancer and conceptual movement creator based in Amsterdam.")
+    meta(name="twitter:description" content="Contemporary dancer and conceptual movement creator based in Amsterdam.")
 
     meta(property="og:image" content="https://anastasiabelyaeva.com/img/share.png")
     meta(name="twitter:image" content="https://anastasiabelyaeva.com/img/share.png")
 
     meta(property="og:site_name" content="Anastasia Belyaeva")
+    meta(property="og:type" content="website")
+
+    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-128602868-1")
+
+    script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128602868-1');

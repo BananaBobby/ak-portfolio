@@ -54,6 +54,7 @@ class TimedMenu extends Component {
     }
 
     _handleMousewheel = (e) => {
+        if (window.innerWidth <= 1200) return;
         if (!this.instances.length || this.state.activeSliderIndex === null) return;
         if (document.body.style.overflow === 'hidden') return;
 

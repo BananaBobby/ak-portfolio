@@ -18,8 +18,7 @@ const mediaTemplate = (data) => {
         if (isVideo(url)) {
             res += `
                 <div class="viewer__slide js-gallery__slide ${!index && 'viewer__slide_active'}">
-                      <img class="viewer__video-holder" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-                      <iframe src="${url}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                  <iframe src="${url}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
             `;
             return;
@@ -56,6 +55,7 @@ class Gallery extends Component {
         this.modifiers = {
           active: 'viewer_active',
           actionActive: 'viewer__action_active',
+          actionHidden: 'viewer__action-button_hidden',
           typePhoto: 'viewer_photo',
           typeVideo: 'viewer_video',
           slideActive: 'viewer__slide_active',
@@ -79,6 +79,7 @@ class Gallery extends Component {
 
         this.viewer = root.querySelector(this.selectors.viewer);
         this.action = root.querySelector(this.selectors.action);
+        this.actionButton = root.querySelector(this.selectors.actionButton);
         this.info = root.querySelector(this.selectors.actionInfo);
         this.media = root.querySelector(this.selectors.media);
         this.prev = root.querySelector(this.selectors.prev);
@@ -124,7 +125,8 @@ class Gallery extends Component {
         const post = JSON.parse(e.delegateTarget.getAttribute('data-post'));
 
         this.post = post;
-        this.info.innerHTML = infoTemplate(post);
+        this.info.innerHTML = post.description ? infoTemplate(post) : '';
+        this.actionButton.classList.toggle(this.modifiers.actionHidden, !post.description);
         this.media.innerHTML = mediaTemplate(post);
         this.viewer.classList.remove(this.modifiers.typePhoto, this.modifiers.typeVideo);
         this.viewer.classList.add(post.video ? this.modifiers.typeVideo : this.modifiers.typePhoto);

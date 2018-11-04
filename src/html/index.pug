@@ -57,6 +57,12 @@ body
                             each rubric in rubrics
                                 div.layout__content-type.js-timed-menu__content-type.js-content-slider
                                     div.content-slider.js-content-slider__scroll
+                                        div.content-slider__back.js-timed-menu__close
+                                            i.content-slider__back-icon.material-icons
+                                                | arrow_back
+
+                                            | Back
+
                                         each slide in rubric.slides
                                             div(class="content-slider__slide content-slider__slide_" + slide.type + " js-content-slider__item")
                                                 div.content-slider__wrapper
