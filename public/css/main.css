@@ -537,7 +537,7 @@ h1 {
     color: #fff;
     font-size: 36px;
     cursor: pointer;
-    display: none;
+    display: block;
     z-index: 10;
     user-select: none; }
     .viewer__control_hidden {
