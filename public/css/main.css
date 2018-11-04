@@ -53,10 +53,12 @@ h1 {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    pointer-events: none; }
     .layout__content-type_active {
       visibility: visible;
-      opacity: 1; }
+      opacity: 1;
+      pointer-events: all; }
   .layout__wrapper {
     height: 100%;
     border-radius: 4px;
@@ -668,7 +670,7 @@ h1 {
       font-size: 28px; }
     .viewer__action-button {
       height: 40px;
-      padding: 0 8px;
+      padding: 0 12px 0 8px;
       font-size: 13px; } }
 
 @media (max-width: 768px) {
