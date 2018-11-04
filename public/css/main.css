@@ -723,7 +723,7 @@ h1 {
   .viewer__action-container {
     width: 240px; }
   .content-slider__title {
-    font-size: 20px; }
+    font-size: 20px !important; }
   .preview {
     width: 280px;
     height: 200px; } }
