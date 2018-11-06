@@ -1,8 +1,12 @@
 soon: true
 title: Black Mirror
-description: A conceptual movement film which embodies the reality of society led characters, smashing their principals and experiencing the unmasking of inner truth by facing the unconditional pureness in others.
+description: A conceptual movement film which embodies the reality of society led characters, smashing their principals and experiencing the unmasking of inner truth by facing the unconditional pureness in others. Choreographed in collaboration with Justin de Jager (NL)
 type: full
-preview: /public/img/content/choreographer/black-mirror/main.jpg
-previewSmall: /public/img/content/choreographer/black-mirror/main.jpg
+preview: /public/img/content/choreographer/black-mirror/DSC_4865.jpg
+previewSmall: /public/img/content/choreographer/black-mirror/DSC_4865.jpg
 media:
+  - /public/img/content/choreographer/black-mirror/DSC_4865.jpg
+  - /public/img/content/choreographer/black-mirror/DSC_4885.jpg
+  - /public/img/content/choreographer/black-mirror/DSC_4743.jpg
+  - /public/img/content/choreographer/black-mirror/DSC_5044.jpg
   - /public/img/content/choreographer/black-mirror/main.jpg
