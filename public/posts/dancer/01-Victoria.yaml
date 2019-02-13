@@ -1,10 +1,10 @@
-soon: true
 title: 'Victoria'
 description: Fashion film by AMFI (Amsterdam Fashion Institute), 2018
 type: quarter
 preview: /public/img/content/dancer/victoria/2.jpg
 previewSmall: /public/img/content/dancer/victoria/2.jpg
 media:
+  - https://player.vimeo.com/video/316047127
   - /public/img/content/dancer/victoria/2.jpg
   - /public/img/content/dancer/victoria/1.jpg
   - /public/img/content/dancer/victoria/3.jpg
