@@ -2,42 +2,54 @@ html
     include ./inc/head.pug
 
 body
-    div.layout(data-component="TimedMenu,Gallery")
+    div.layout(data-component="TimedMenu,Gallery,About")
         div.layout__holder
             div.layout__side
-                h1.layout__title.js-content-slider__reset.js-timed-menu__close
-                    | Anastasia Belyaeva
+                div.layout__promo
+                    h1.layout__title.js-content-slider__reset.js-timed-menu__close
+                        | Anastasia Belyaeva
 
-                div.menu.layout__menu
-                    each rubric in rubrics
-                        a.menu__item.js-timed-menu__item(href="#")
-                            = rubric.name
-                            div.menu__progress
-                                div.menu__bar.js-timed-menu__progress
-
-                div.layout__preview-box
-                    div.layout__previews
+                    div.menu.layout__menu
                         each rubric in rubrics
-                            div.layout__previews-section.js-timed-menu__section
-                                each post in rubric.previews
-                                    a.layout__preview.preview.js-gallery__preview(
-                                        href="#"
-                                        data-post=post
-                                    )
-                                        if post.soon
-                                            div.preview__badge
-                                                | Coming soon
-                                        div.preview__img(style="background-image: url(" + post.previewSmall + ")")
-                                        div.preview__action
-                                            i.material-icons
-                                                - if (post.media[0].includes('vimeo.com'))
-                                                  | play_arrow
-                                                - else
-                                                  | search
+                            a.menu__item.js-timed-menu__item(href="#")
+                                = rubric.name
+                                div.menu__progress
+                                    div.menu__bar.js-timed-menu__progress
 
-                    div.layout__more
-                        a.link.js-timed-menu__more(href="#")
-                            | More
+                    div.layout__preview-box
+                        div.layout__previews
+                            each rubric in rubrics
+                                div.layout__previews-section.js-timed-menu__section
+                                    each post in rubric.previews
+                                        a.layout__preview.preview.js-gallery__preview(
+                                            href="#"
+                                            data-post=post
+                                        )
+                                            if post.soon
+                                                div.preview__badge
+                                                    | Coming soon
+                                            div.preview__img(style="background-image: url(" + post.previewSmall + ")")
+                                            div.preview__action
+                                                i.material-icons
+                                                    - if (post.media[0].includes('vimeo.com'))
+                                                      | play_arrow
+                                                    - else
+                                                      | search
+
+                        div.layout__more
+                            a.link.js-timed-menu__more(href="#")
+                                | More
+
+                div.layout__about
+                    p
+                        | “Each moment you are in a certain state. There is no such moment when you aren’t. Draw your attention to the state that you experience at the moment. Or mood. Or sensation. Or emotion. Can you associate your current self with a specific emotion/sensation/state of mind. Observe it. Now find a way how you can move keeping your attention there, don’t think of a movement, do not design it in your head, don’t think of a next step. The only thing that you need to be busy with is constant observation of your state/sensation/emotion. With time it might change and shift to another one, which is okay. Just continue to observe what’s new going on. Look inwards”
+                    p
+                        | Drawing attention to an instrument and by practicing concentration we reach our emotions directly. Awareness allows space for intuitive control. This space offers a huge playground for creativity and also for zeroing out, self purification. This is a huge resource for me.
+                    div.layout__back.js-about__close
+                        i.layout__back-icon.material-icons
+                            | arrow_back
+
+                        | Back
 
             div.layout__content
                 div.layout__controls
@@ -89,6 +101,9 @@ body
                                                                         div.content-slider__description
                                                                             = post.description
 
+            div.layout__copy
+                | © 2020 Anastasia Belyaeva
+
             div.layout__shares
                 a.layout__share(href="https://www.instagram.com/stacie_koch/" target="_blank")
                     | Instagram
@@ -98,6 +113,9 @@ body
 
                 a.layout__share(href="mailto:blvt.anastasia@gmail.com" target="_blank")
                     | Email
+
+                a.layout__share.js-about__open(href="#" target="_blank")
+                    | About
 
             div.viewer.js-gallery__viewer
                 div.viewer__overlay.js-gallery__close
