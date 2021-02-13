@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:data": "node cli/data.js",
+    "watch:data": "nodemon cli/data.js --watch public/posts --watch cli/data.js -e yaml,js",
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "watch": "concurrently \"yarn dev\" \"yarn watch:data\"",
+    "build": "yarn build:data && next build && next export"
   },
   "dependencies": {
+    "@vimeo/player": "^2.15.0",
+    "concurrently": "^5.3.0",
+    "js-yaml": "^4.0.0",
     "next": "10.0.6",
+    "nodemon": "^2.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }
